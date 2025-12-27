@@ -334,25 +334,22 @@ public class airplane_war extends JPanel implements ActionListener, KeyListener 
             }
         }
     }
-    
+    // 繪製菜單
     private void drawMenu(Graphics2D g2d) {
         // 繪製星空背景
         drawStars(g2d);
-        
         // 標題光暈效果
         g2d.setFont(new Font("Arial", Font.BOLD, Math.max(50, screenHeight / 10)));
-        String title = "SPACE ODYSSEY";
+        String title = "ORBIT ZERO";
         FontMetrics fm = g2d.getFontMetrics();
         int titleWidth = fm.stringWidth(title);
         int titleX = (screenWidth - titleWidth) / 2;
         int titleY = screenHeight / 4;
-        
         // 光暈
         for (int i = 5; i > 0; i--) {
             g2d.setColor(new Color(100, 150, 255, 30));
             g2d.drawString(title, titleX + i, titleY + i);
         }
-        
         // 漸變標題
         GradientPaint gradient = new GradientPaint(
             titleX, titleY, new Color(100, 200, 255),
@@ -360,28 +357,24 @@ public class airplane_war extends JPanel implements ActionListener, KeyListener 
         );
         g2d.setPaint(gradient);
         g2d.drawString(title, titleX, titleY);
-        
         // 副標題
         g2d.setFont(new Font("Arial", Font.ITALIC, 20));
         g2d.setColor(new Color(150, 200, 255));
         String subtitle = "Journey Through the Solar System";
         int subWidth = g2d.getFontMetrics().stringWidth(subtitle);
         g2d.drawString(subtitle, (screenWidth - subWidth) / 2, titleY + 50);
-        
         // 按鈕效果
         g2d.setFont(new Font("Arial", Font.BOLD, 24));
         String start = "Press ENTER to Begin";
         int startWidth = g2d.getFontMetrics().stringWidth(start);
         int startX = (screenWidth - startWidth) / 2;
         int startY = screenHeight / 2;
-        
         // 按鈕背景
         g2d.setColor(new Color(50, 100, 150, 100));
         g2d.fillRoundRect(startX - 20, startY - 30, startWidth + 40, 50, 25, 25);
         g2d.setColor(new Color(100, 200, 255));
         g2d.drawRoundRect(startX - 20, startY - 30, startWidth + 40, 50, 25, 25);
         g2d.drawString(start, startX, startY);
-        
         // 控制說明
         g2d.setFont(new Font("Arial", Font.PLAIN, 18));
         String[] controls = {
@@ -444,7 +437,7 @@ public class airplane_war extends JPanel implements ActionListener, KeyListener 
             g2d.fillOval((int)b.x - 2, (int)b.y - 2, 4, 4);
         }
         
-        // 繪製玩家飛船 - 現代化設計
+        // 繪製玩家飛船
         AffineTransform old = g2d.getTransform();
         g2d.translate(playerX, playerY);
         g2d.rotate(playerAngle);
@@ -471,7 +464,6 @@ public class airplane_war extends JPanel implements ActionListener, KeyListener 
             int[] engineY = {-6, 0, 6};
             g2d.fillPolygon(engineX, engineY, 3);
         }
-        
         // 輪廓
         g2d.setColor(new Color(200, 220, 255));
         g2d.setStroke(new BasicStroke(2));
